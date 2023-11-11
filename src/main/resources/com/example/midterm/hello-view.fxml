@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import java.lang.Integer?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.midterm.HelloController">
+    <center>
+        <TableView fx:id="productListTableView" prefWidth="400">
+            <columns>
+                <TableColumn text="Product Name" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="productName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="ID" prefWidth="50">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Material" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="material" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Quantity" prefWidth="50">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="quantity" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Delivery Date" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="deliveryDate" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+    </center>
+
+    <right>
+        <VBox alignment="TOP_CENTER" spacing="10">
+            <Label text="Product Entry Form" style="-fx-font-size: 16px;"/>
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Product Name:"/>
+                <TextField fx:id="productNameField" promptText="Enter Product Name"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="ID:"/>
+                <TextField fx:id="idField" promptText="Enter ID"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Material:"/>
+                <ComboBox fx:id="materialComboBox" prefWidth="100">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Wood"/>
+                            <String fx:value="Metal"/>
+                            <String fx:value="Board"/>
+                            <String fx:value="Cloth"/>
+                            <String fx:value="Other"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Quantity:"/>
+                <ComboBox fx:id="quantityComboBox" prefWidth="50">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <Integer fx:value="1"/>
+                            <Integer fx:value="2"/>
+                            <Integer fx:value="3"/>
+                            <Integer fx:value="4"/>
+                            <Integer fx:value="5"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+            <HBox>
+                <Label text="Date:"/>
+                <DatePicker fx:id="deliveryDatePicker" promptText="Select Delivery Date" />
+            </HBox>
+            <Button text="Add Product" onAction="#handleAddProduct"/>
+        </VBox>
+    </right>
+</BorderPane>
