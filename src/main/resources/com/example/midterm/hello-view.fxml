@@ -91,6 +91,8 @@
             </HBox>
 
             <Button style="-fx-background-color: #0079b3; -fx-text-fill: white; -fx-pref-width: 200px;" text="Add Product" onAction="#handleAddProduct" />
+
+            <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
         </VBox>
     </right>
 </BorderPane>

@@ -25,6 +25,8 @@ public class HelloController {
     private ComboBox<Integer> quantityComboBox;
     @FXML
     private DatePicker deliveryDatePicker;
+    @FXML
+    private Label errorLabel;
 
     private ObservableList<Product> productList = FXCollections.observableArrayList();
 
@@ -57,9 +59,18 @@ public class HelloController {
         Integer quantity = quantityComboBox.getValue();
         LocalDate deliveryDate = deliveryDatePicker.getValue(); // Get the selected date
 
-        if (productName != null && !productName.isEmpty() &&
-                id != null && !id.isEmpty() &&
-                material != null && quantity != null && deliveryDate != null) {
+        if (productName.isEmpty() || id.isEmpty() || deliveryDate == null) {
+            errorLabel.setText("Please fill in all fields.");
+            return; // Prevent adding the product if there are errors
+        } else if (idExists(id)) {
+            errorLabel.setText("ID already exists. Please choose a different one.");
+            return; // Prevent adding the product if there are errors
+        } else if (deliveryDate.isBefore(LocalDate.now())) {
+            errorLabel.setText("Delivery date cannot be in the past.");
+            return; // Prevent adding the product if there are errors
+        }
+
+        if (material != null && quantity != null) {
 
             Product product = new Product(productName, id, material, quantity, deliveryDate);
             productList.add(product);
@@ -75,5 +86,14 @@ public class HelloController {
             quantityComboBox.getSelectionModel().clearSelection();
             deliveryDatePicker.getEditor().clear();
         }
+    }
+
+    private boolean idExists(String id) {
+        for (Product product : productList) {
+            if (product.getId().equals(id)) {
+                return true; // ID already exists
+            }
+        }
+        return false; // ID does not exist
     }
 }
