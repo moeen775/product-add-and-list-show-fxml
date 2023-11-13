@@ -21,44 +21,8 @@ public class Product {
         this.deliveryDate = new SimpleObjectProperty<>(deliveryDate);
     }
 
-    public String getProductName() {
-        return productName.get();
-    }
-
     public String getId() {
         return id.get();
-    }
-
-    public String getMaterial() {
-        return material.get();
-    }
-
-    public int getQuantity() {
-        return quantity.get();
-    }
-
-    public LocalDate getDeliveryDate() {
-        return deliveryDate.get();
-    }
-
-    public void setProductName(String productName) {
-        this.productName.set(productName);
-    }
-
-    public void setId(String id) {
-        this.id.set(id);
-    }
-
-    public void setMaterial(String material) {
-        this.material.set(material);
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity.set(quantity);
-    }
-
-    public void setDeliveryDate(LocalDate deliveryDate) {
-        this.deliveryDate.set(deliveryDate);
     }
 
     public SimpleStringProperty productNameProperty() {
